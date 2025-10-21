@@ -1,9 +1,9 @@
 import streamlit as st
 import requests
-import os
+
 
 def cek_keamanan_situs(url):
-    API_KEY = os.getenv("GOOGLE_API_KEY")  # Ambil API key dari environment
+    API_KEY = st.secrets["API_KEY"]  # Ambil API key dari environment
     ENDPOINT = f"https://safebrowsing.googleapis.com/v4/threatMatches:find?key={API_KEY}"
 
     payload = {
@@ -47,3 +47,4 @@ if st.button("Cek Keamanan"):
             st.error("🚨 Situs terdeteksi berbahaya!")
 
             st.json(hasil)
+
