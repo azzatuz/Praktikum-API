@@ -14,6 +14,16 @@ def cek_keamanan_situs(url):
     if not re.match(r"^https?://", url):
         url = "https://" + url
 
+    # Validasi apakah input benar-benar URL website
+    pola_url = re.compile(
+        r"^https?://"  # Harus diawali http atau https
+        r"(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}"  # domain.tld (misal uin-suka.ac.id)
+        r"(?:/.*)?$"  # boleh ada path setelah domain
+    )
+
+    if not pola_url.match(url):
+        return {"error": "Input tidak valid. Harap masukkan URL website yang benar (contoh: https://uin-suka.ac.id)"}
+
     ENDPOINT = f"https://safebrowsing.googleapis.com/v4/threatMatches:find?key={API_KEY}"
 
     payload = {
