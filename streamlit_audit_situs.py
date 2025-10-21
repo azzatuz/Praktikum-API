@@ -45,4 +45,5 @@ if st.button("Cek Keamanan"):
             st.success("✅ Situs aman menurut Google Safe Browsing API.")
         else:
             st.error("🚨 Situs terdeteksi berbahaya!")
+
             st.json(hasil)
